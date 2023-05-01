@@ -23,3 +23,4 @@ depsize lets you show the size of the projects dependencies.
 
 1. We currently only support projects that include a `package.json` file
 2. If the given repository's package.json is larger than 10mB, then you will not be served.
+3. If the given repository's dependencies exceed 50, then you will not be served.
