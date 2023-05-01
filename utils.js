@@ -5,33 +5,38 @@ const octokit = new Octokit({
 });
 
 function kBtoMB(kb) {
-  if (kb < 10240) {
+  console.log(kb);
+  if (kb < 1024 * 100) {
     return `${(kb / 1024).toFixed(2)} kB`;
   }
   return `${(kb / 1024 / 1024).toFixed(2)} MB`;
 }
 
 function generateSchema(kb) {
-  const schema = {
+  return {
     schemaVersion: 1,
     label: "dependency size",
     message: kBtoMB(kb),
     color: "blue",
   };
-  return schema;
 }
 
 export async function getRepoSize(user, repo) {
-  const response = await octokit.request(
-    "GET /repos/{owner}/{repo}/contents/package.json",
-    {
-      owner: user,
-      repo: repo,
-      headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-    }
-  );
+  let response;
+  try {
+    response = await octokit.request(
+      "GET /repos/{owner}/{repo}/contents/package.json",
+      {
+        owner: user,
+        repo: repo,
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      }
+    );
+  } catch (e) {
+    return { error: "Repository not found.", status: 404 };
+  }
 
   if (response.data.size > 1024 * 10) {
     return { error: "File too large.", status: 413 };
