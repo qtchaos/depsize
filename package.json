@@ -1,0 +1,17 @@
+{
+  "name": "depsize",
+  "version": "0.0.0",
+  "devDependencies": {
+    "wrangler": "2.9.1"
+  },
+  "scripts": {
+    "build": "wrangler build",
+    "dev": "wrangler dev --local",
+    "publish": "wrangler publish --minify"
+  },
+  "private": true,
+  "dependencies": {
+    "itty-router": "^3.0.12",
+    "octokit": "^2.0.14"
+  }
+}
