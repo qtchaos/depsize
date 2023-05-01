@@ -8,6 +8,17 @@ depsize lets you show the size of the projects dependencies.
 
 ![Dependencies Size](https://depsize.grubby.workers.dev/depsize/qtchaos/depsize)
 
+`https://depsize.grubby.workers.dev/schema/{USER}/{REPO}`
+
+```
+{
+  "schemaVersion": 1,
+  "label": "dependency size",
+  "message": "42.46 kB",
+  "color": "blue"
+}
+```
+
 ## Limits
 
 1. We currently only support projects that include a `package.json` file
